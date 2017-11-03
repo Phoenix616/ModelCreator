@@ -459,6 +459,11 @@ public class Element
 		this.shade = shade;
 	}
 
+
+	public String getName() {
+		return name;
+	}
+
 	public void setName(String name)
 	{
 		this.name = name;

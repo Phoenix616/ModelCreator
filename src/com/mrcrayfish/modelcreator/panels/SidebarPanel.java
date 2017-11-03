@@ -100,7 +100,10 @@ public class SidebarPanel extends JPanel implements ElementManager
 			int selected = list.getSelectedIndex();
 			if (selected != -1)
 			{
-				model.addElement(new Element(model.getElementAt(selected)));
+				Element original = model.getElementAt(selected);
+				Element copy = new Element(original);
+				copy.setName(original.getName() + " Copy");
+				model.addElement(copy);
 				list.setSelectedIndex(model.getSize() - 1);
 			}
 		});
@@ -141,7 +144,7 @@ public class SidebarPanel extends JPanel implements ElementManager
 			{
 				tabbedPane.updateValues();
 				name.setEnabled(true);
-				name.setText(cube.toString());
+				name.setText(cube.getName());
 			}
 		});
 
