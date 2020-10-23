@@ -69,6 +69,25 @@ public class OriginPanel extends JPanel implements IElementUpdater
                 }
             }
         });
+        xOriginField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setOriginX(Parser.parseDouble(xOriginField.getText(), element.getOriginX()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
+                }
+            }
+        });
         xOriginField.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -101,6 +120,25 @@ public class OriginPanel extends JPanel implements IElementUpdater
                 }
             }
         });
+        yOriginField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setOriginY(Parser.parseDouble(yOriginField.getText(), element.getOriginY()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
+                }
+            }
+        });
         yOriginField.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -130,6 +168,25 @@ public class OriginPanel extends JPanel implements IElementUpdater
                         manager.updateValues();
                         StateManager.pushState(manager);
                     }
+                }
+            }
+        });
+        zOriginField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setOriginZ(Parser.parseDouble(zOriginField.getText(), element.getOriginZ()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
                 }
             }
         });

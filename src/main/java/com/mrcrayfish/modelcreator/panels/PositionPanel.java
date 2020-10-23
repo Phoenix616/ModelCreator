@@ -73,6 +73,25 @@ public class PositionPanel extends JPanel implements IElementUpdater
                 }
             }
         });
+        xPositionField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setStartX(Parser.parseDouble(xPositionField.getText(), element.getStartX()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
+                }
+            }
+        });
         xPositionField.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -107,6 +126,25 @@ public class PositionPanel extends JPanel implements IElementUpdater
                         manager.updateValues();
                     }
 
+                }
+            }
+        });
+        yPositionField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setStartY(Parser.parseDouble(yPositionField.getText(), element.getStartY()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
                 }
             }
         });
@@ -145,6 +183,25 @@ public class PositionPanel extends JPanel implements IElementUpdater
                         manager.updateValues();
                     }
 
+                }
+            }
+        });
+        zPositionField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setStartZ(Parser.parseDouble(zPositionField.getText(), element.getStartZ()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
                 }
             }
         });

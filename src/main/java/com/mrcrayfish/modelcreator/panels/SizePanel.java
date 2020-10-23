@@ -71,6 +71,25 @@ public class SizePanel extends JPanel implements IElementUpdater
                 }
             }
         });
+        xSizeField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3f;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setWidth(Parser.parseDouble(xSizeField.getText(), element.getWidth()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
+                }
+            }
+        });
         xSizeField.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -106,6 +125,25 @@ public class SizePanel extends JPanel implements IElementUpdater
                 }
             }
         });
+        ySizeField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setHeight(Parser.parseDouble(ySizeField.getText(), element.getHeight()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
+                }
+            }
+        });
         ySizeField.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -138,6 +176,25 @@ public class SizePanel extends JPanel implements IElementUpdater
                         StateManager.pushState(manager);
                     }
 
+                }
+            }
+        });
+        zSizeField.addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                Element element = manager.getSelectedElement();
+                if (element != null)
+                {
+                    float scrollAmount = e.getUnitsToScroll() / 3;
+                    if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == 1)
+                    {
+                        scrollAmount /= 10;
+                    }
+                    element.setDepth(Parser.parseDouble(zSizeField.getText(), element.getDepth()) - scrollAmount);
+                    element.updateEndUVs();
+                    manager.updateValues();
                 }
             }
         });
