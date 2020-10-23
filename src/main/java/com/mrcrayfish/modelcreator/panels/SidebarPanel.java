@@ -76,7 +76,9 @@ public class SidebarPanel extends JPanel implements ElementManager
             int selected = list.getSelectedIndex();
             if(selected != -1)
             {
-                model.addElement(new ElementCellEntry(new Element(model.getElementAt(selected).getElement())));
+                Element copy = new Element(model.getElementAt(selected).getElement());
+                copy.setName(copy.getName() + " Copy");
+                model.addElement(new ElementCellEntry(copy));
                 list.setSelectedIndex(model.getSize() - 1);
                 StateManager.pushState(creator.getElementManager());
             }
