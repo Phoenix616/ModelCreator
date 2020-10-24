@@ -288,6 +288,9 @@ public class Util
 
     public static File getMinecraftDirectory()
     {
+        if (System.getProperty("modelcreator.minecraftdir") != null) {
+            return new File(System.getProperty("modelcreator.minecraftdir"));
+        }
         String userHome = System.getProperty("user.home", ".");
         OperatingSystem os = OperatingSystem.get();
         switch(os)
