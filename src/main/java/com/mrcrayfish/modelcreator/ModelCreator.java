@@ -150,7 +150,9 @@ public class ModelCreator extends JFrame
         setVisible(true);
         setLocationRelativeTo(null);
 
-        SwingUtilities.invokeLater(() -> WelcomeDialog.show(ModelCreator.this));
+        if (System.getProperty("modelcreator.nowelcome") == null) {
+            SwingUtilities.invokeLater(() -> WelcomeDialog.show(ModelCreator.this));
+        }
 
         createDisplay();
 
