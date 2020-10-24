@@ -25,7 +25,7 @@ public class TexturePath
         }
         String assetPath = split[split.length - 1];
         this.directory = assetPath.substring(0, Math.max(0, assetPath.lastIndexOf("/")));
-        this.name = assetPath.replace(this.directory, "").substring(1);
+        this.name = assetPath.substring(this.directory.length() + 1);
     }
 
     public TexturePath(File file)
